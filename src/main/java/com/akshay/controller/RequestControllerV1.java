@@ -1,11 +1,14 @@
 package com.akshay.controller;
 
+import com.akshay.domain.Cab;
 import com.akshay.domain.TeamMember;
 import com.akshay.services.MainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RestControllerAdvice
@@ -24,5 +27,17 @@ public class RequestControllerV1 {
     public TeamMember register(@RequestBody TeamMember teamMember)  {
         logger.info("Registering Team Member " + teamMember);
         return service.registerTeamMember(teamMember);
+    }
+
+
+    @RequestMapping(
+            value = "/cabs",
+            method = RequestMethod.POST,
+            consumes = "application/json",
+            produces = "application/json"
+    )
+    public List<Cab> registerCabs(@RequestBody List<Cab> cabs){
+        logger.info("Registering Cabs " + cabs);
+        return service.registerCabs(cabs);
     }
 }

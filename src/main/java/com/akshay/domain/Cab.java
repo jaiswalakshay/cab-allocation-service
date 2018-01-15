@@ -1,21 +1,22 @@
 
 package com.akshay.domain;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Cab {
 
-    @SerializedName("cab_id")
-    @Expose
+    @JsonProperty("cab_id")
+    @Id
     private String cabId;
-    @SerializedName("cost")
-    @Expose
+    @JsonProperty("cost")
     private Integer cost;
-    @SerializedName("capacity")
-    @Expose
+    @JsonProperty("capacity")
     private Integer capacity;
 
     public String getCabId() {
