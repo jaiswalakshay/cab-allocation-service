@@ -6,6 +6,8 @@ import com.akshay.services.MainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +26,9 @@ public class RequestControllerV1 {
             method = RequestMethod.POST,
             consumes = "application/json",
             produces = "application/json")
-    public TeamMember register(@RequestBody TeamMember teamMember)  {
+    public ResponseEntity<TeamMember> register(@RequestBody TeamMember teamMember)  {
         logger.info("Registering Team Member " + teamMember);
-        return service.registerTeamMember(teamMember);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.registerTeamMember(teamMember));
     }
 
 
@@ -36,8 +38,8 @@ public class RequestControllerV1 {
             consumes = "application/json",
             produces = "application/json"
     )
-    public List<Cab> registerCabs(@RequestBody List<Cab> cabs){
+    public ResponseEntity<List<Cab>> registerCabs(@RequestBody List<Cab> cabs){
         logger.info("Registering Cabs " + cabs);
-        return service.registerCabs(cabs);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.registerCabs(cabs));
     }
 }
